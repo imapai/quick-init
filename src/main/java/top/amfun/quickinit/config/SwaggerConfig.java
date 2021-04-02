@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-@EnableKnife4j
+//@EnableKnife4j
 public class SwaggerConfig {
 
     public SwaggerProperties swaggerProperties() {
