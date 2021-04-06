@@ -1,5 +1,10 @@
 package top.amfun.quickinit.constant;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum ResultCodeEnum {
     SUCCESS(0, "操作成功"),
     FAILED(500, "操作失败"),
@@ -10,17 +15,4 @@ public enum ResultCodeEnum {
 
     private int code;
     private String message;
-
-    private ResultCodeEnum(int code, String message) {
-        this.code = code;
-        this.message = message;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 }
