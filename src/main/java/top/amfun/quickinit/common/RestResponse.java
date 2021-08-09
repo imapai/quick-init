@@ -42,6 +42,12 @@ public class RestResponse<T> {
     public static <T> RestResponse<T> failed(T data, String message) {
         return new RestResponse<>(ResultCodeEnum.FAILED.getCode(), message, data);
     }
+    public static <T> RestResponse<T> fail(Integer code, String msg) {
+        RestResponse<T> response = new RestResponse<T>();
+        response.setCode(code);
+        response.setMessage(msg);
+        return response;
+    }
 
     /**
      * 参数验证失败返回结果
