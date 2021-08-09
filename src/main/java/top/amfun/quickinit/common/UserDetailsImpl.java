@@ -1,4 +1,4 @@
-package top.amfun.quickinit.domain;
+package top.amfun.quickinit.common;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

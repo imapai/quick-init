@@ -1,7 +1,7 @@
 package top.amfun.quickinit.controller;
 
-import top.amfun.quickinit.domain.PageResponse;
-import top.amfun.quickinit.domain.RestResponse;
+import top.amfun.quickinit.common.PageResponse;
+import top.amfun.quickinit.common.RestResponse;
 import top.amfun.quickinit.entity.Role;
 import top.amfun.quickinit.service.RoleService;
 import io.swagger.annotations.Api;

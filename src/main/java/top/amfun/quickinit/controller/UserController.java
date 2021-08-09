@@ -1,7 +1,8 @@
 package top.amfun.quickinit.controller;
 
 import cn.hutool.core.collection.CollUtil;
-import top.amfun.quickinit.domain.RestResponse;
+import top.amfun.quickinit.common.RestResponse;
+import top.amfun.quickinit.common.SystemSecurityContext;
 import top.amfun.quickinit.dto.LoginForm;
 import top.amfun.quickinit.entity.Role;
 import top.amfun.quickinit.entity.User;
@@ -51,6 +52,7 @@ public class UserController {
     @ApiOperation(value = "获取当前登录用户信息")
     @GetMapping(value = "/info")
     public RestResponse<Map<String, Object>> getAdminInfo(Principal principal) {
+        User subject = SystemSecurityContext.getSubject();
         if(principal==null){
             return RestResponse.unauthorized(null);
         }

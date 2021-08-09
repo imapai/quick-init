@@ -1,7 +1,7 @@
 package top.amfun.quickinit.config;
 
 import com.baomidou.mybatisplus.extension.exceptions.ApiException;
-import top.amfun.quickinit.domain.RestResponse;
+import top.amfun.quickinit.common.RestResponse;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;

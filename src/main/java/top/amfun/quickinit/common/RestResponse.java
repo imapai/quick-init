@@ -1,4 +1,4 @@
-package top.amfun.quickinit.domain;
+package top.amfun.quickinit.common;
 
 import top.amfun.quickinit.constant.ResultCodeEnum;
 

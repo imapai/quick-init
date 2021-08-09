@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import top.amfun.quickinit.config.ExceptionAsserts;
 import top.amfun.quickinit.mapper.RoleMapper;
 import top.amfun.quickinit.mapper.UserMapper;
-import top.amfun.quickinit.domain.UserDetailsImpl;
+import top.amfun.quickinit.common.UserDetailsImpl;
 import top.amfun.quickinit.entity.Role;
 import top.amfun.quickinit.entity.User;
 import top.amfun.quickinit.utli.JwtTokenUtil;

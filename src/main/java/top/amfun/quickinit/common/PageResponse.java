@@ -1,4 +1,4 @@
-package top.amfun.quickinit.domain;
+package top.amfun.quickinit.common;
 
 import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

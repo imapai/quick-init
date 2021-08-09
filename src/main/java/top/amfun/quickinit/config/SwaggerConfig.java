@@ -1,7 +1,6 @@
 package top.amfun.quickinit.config;
 
-import top.amfun.quickinit.domain.SwaggerProperties;
-import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
+import top.amfun.quickinit.common.SwaggerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
