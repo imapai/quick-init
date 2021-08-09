@@ -1,17 +1,9 @@
-package top.amfun.quickinit.service.impl;
+package top.amfun.quickinit.service;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
-import top.amfun.quickinit.config.ExceptionAsserts;
-import top.amfun.quickinit.dao.RoleMapper;
-import top.amfun.quickinit.domain.UserDetailsImpl;
-import top.amfun.quickinit.entity.Role;
-import top.amfun.quickinit.entity.User;
-import top.amfun.quickinit.dao.UserMapper;
-import top.amfun.quickinit.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import top.amfun.quickinit.utli.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,13 +11,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import top.amfun.quickinit.config.ExceptionAsserts;
+import top.amfun.quickinit.mapper.RoleMapper;
+import top.amfun.quickinit.mapper.UserMapper;
+import top.amfun.quickinit.domain.UserDetailsImpl;
+import top.amfun.quickinit.entity.Role;
+import top.amfun.quickinit.entity.User;
+import top.amfun.quickinit.utli.JwtTokenUtil;
 
 import java.util.List;
 
 @Slf4j
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
-
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Autowired

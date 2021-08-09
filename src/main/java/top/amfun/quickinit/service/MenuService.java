@@ -1,8 +1,8 @@
 package top.amfun.quickinit.service;
 
-import top.amfun.quickinit.entity.Menu;
 import com.baomidou.mybatisplus.extension.service.IService;
+import top.amfun.quickinit.entity.Menu;
 
-public interface MenuService extends IService<Menu> {
+public interface MenuService {
 
 }

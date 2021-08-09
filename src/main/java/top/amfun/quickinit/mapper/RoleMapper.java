@@ -1,4 +1,4 @@
-package top.amfun.quickinit.dao;
+package top.amfun.quickinit.mapper;
 
 import top.amfun.quickinit.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

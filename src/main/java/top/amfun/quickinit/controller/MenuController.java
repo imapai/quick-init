@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = "菜单")
 @RestController
-@RequestMapping("/menu")
+@RequestMapping("/menus")
 public class MenuController {
 
 }

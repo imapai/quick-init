@@ -1,8 +1,7 @@
 package top.amfun.quickinit.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.util.Date;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -19,6 +18,7 @@ public class Role implements Serializable {
     private static final long serialVersionUID=1L;
 
     @ApiModelProperty(value = "角色ID")
+    @TableId(value = "role_id", type = IdType.AUTO)
     private Long roleId;
 
     @ApiModelProperty(value = "角色名称")

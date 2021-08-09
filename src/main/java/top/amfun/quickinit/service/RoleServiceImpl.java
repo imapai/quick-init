@@ -1,13 +1,12 @@
-package top.amfun.quickinit.service.impl;
+package top.amfun.quickinit.service;
 
-import top.amfun.quickinit.dao.MenuMapper;
-import top.amfun.quickinit.entity.Menu;
-import top.amfun.quickinit.entity.Role;
-import top.amfun.quickinit.dao.RoleMapper;
-import top.amfun.quickinit.service.RoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.amfun.quickinit.mapper.MenuMapper;
+import top.amfun.quickinit.mapper.RoleMapper;
+import top.amfun.quickinit.entity.Menu;
+import top.amfun.quickinit.entity.Role;
 
 import java.util.List;
 

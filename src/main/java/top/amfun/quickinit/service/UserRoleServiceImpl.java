@@ -1,10 +1,9 @@
-package top.amfun.quickinit.service.impl;
+package top.amfun.quickinit.service;
 
-import top.amfun.quickinit.entity.UserRole;
-import top.amfun.quickinit.dao.UserRoleMapper;
-import top.amfun.quickinit.service.UserRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import top.amfun.quickinit.mapper.UserRoleMapper;
+import top.amfun.quickinit.entity.UserRole;
 
 @Service
 public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> implements UserRoleService {

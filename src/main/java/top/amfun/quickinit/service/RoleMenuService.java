@@ -1,7 +1,7 @@
 package top.amfun.quickinit.service;
 
-import top.amfun.quickinit.entity.RoleMenu;
 import com.baomidou.mybatisplus.extension.service.IService;
+import top.amfun.quickinit.entity.RoleMenu;
 
 public interface RoleMenuService extends IService<RoleMenu> {
 

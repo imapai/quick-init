@@ -36,11 +36,13 @@ public class Menu implements Serializable {
     @ApiModelProperty(value = "组件名称")
     private String name;
 
+    @ApiModelProperty(value = "路径")
+    private String path;
+
     @ApiModelProperty(value = "排序")
     private Integer sort;
 
     @ApiModelProperty(value = "隐藏")
     private Boolean hidden;
-
 
 }
