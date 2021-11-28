@@ -1,16 +1,13 @@
 package top.amfun.quickinit.service;
 
-import top.amfun.quickinit.entity.Menu;
-import top.amfun.quickinit.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
-
-import java.util.List;
+import top.amfun.quickinit.entity.Role;
 
 public interface RoleService extends IService<Role> {
 
-    List<Menu> getMenuList(Long userId);
+    Role create(Role role);
 
-    void create(Role role);
+    Role modify(Role role);
 
-    void modify(Role role);
+    Role getRoleById(Long roleId);
 }

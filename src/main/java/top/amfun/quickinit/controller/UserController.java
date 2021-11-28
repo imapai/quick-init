@@ -1,33 +1,33 @@
 package top.amfun.quickinit.controller;
 
-import cn.hutool.core.collection.CollUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import top.amfun.quickinit.common.CurrentUser;
 import top.amfun.quickinit.common.RestResponse;
 import top.amfun.quickinit.common.SystemSecurityContext;
 import top.amfun.quickinit.dto.LoginForm;
 import top.amfun.quickinit.entity.Role;
 import top.amfun.quickinit.entity.User;
+import top.amfun.quickinit.service.MenuService;
 import top.amfun.quickinit.service.RoleService;
 import top.amfun.quickinit.service.UserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Api(tags = "用户")
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
     @Autowired
     private UserService userService;
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private MenuService menuService;
 
     @ApiOperation(value = "用户注册")
     @PostMapping(value = "/register")
@@ -46,36 +46,22 @@ public class UserController {
         if (token == null) {
             return RestResponse.failed("用户名或密码错误");
         }
-        return RestResponse.success(token);
+        return RestResponse.success("Bearer "+ token);
     }
 
     @ApiOperation(value = "获取当前登录用户信息")
     @GetMapping(value = "/info")
-    public RestResponse<Map<String, Object>> getAdminInfo(Principal principal) {
-        User subject = SystemSecurityContext.getSubject();
-        if(principal==null){
-            return RestResponse.unauthorized(null);
-        }
-        String username = principal.getName();
-        User user = userService.getUserByUsername(username);
+    public RestResponse<Map<String, Object>> getAdminInfo() {
+        CurrentUser subject = SystemSecurityContext.getSubject();
+        User user = subject.getUser();
         Map<String, Object> data = new HashMap<>();
         data.put("username", user.getUsername());
         // 动态菜单
-        data.put("menus", roleService.getMenuList(user.getUserId()));
+        data.put("menus", menuService.getMenuList(user.getUserId()));
         data.put("avatar", user.getAvatar());
         List<Role> roleList = userService.getRoleList(user.getUserId());
-        if(CollUtil.isNotEmpty(roleList)){
-            List<String> roles = roleList.stream().map(Role::getName).collect(Collectors.toList());
-            data.put("roles",roles);
-        }
+        data.put("roles", subject.getRoles());
         return RestResponse.success(data);
-    }
-
-    @ApiOperation(value = "登出功能")
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    @ResponseBody
-    public RestResponse logout() {
-        return RestResponse.success();
     }
 }
 

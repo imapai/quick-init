@@ -1,5 +1,7 @@
 package top.amfun.quickinit.config;
 
+import org.springframework.beans.BeanUtils;
+import top.amfun.quickinit.common.CurrentUser;
 import top.amfun.quickinit.utli.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,13 +46,19 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
                 if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(fillCurrentUser(userDetails), null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    LOGGER.info("authenticated user:{}", username);
+                    LOGGER.info("authenticated username:{}", username);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
         }
         chain.doFilter(request, response);
+    }
+
+    private CurrentUser fillCurrentUser(UserDetails userDetails) {
+        CurrentUser currentUser = new CurrentUser();
+        BeanUtils.copyProperties(userDetails, currentUser);
+        return currentUser;
     }
 }

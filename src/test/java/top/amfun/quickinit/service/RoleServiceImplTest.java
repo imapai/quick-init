@@ -13,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class RoleServiceImplTest {
     @Autowired
-    private RoleService roleService;
+    private MenuService menuService;
 
     @Test
     void getMenuList() {
-        List<Menu> menuList = roleService.getMenuList(1L);
+        List<Menu> menuList = menuService.getMenuList(1L);
         Assert.assertNotNull(menuList);
     }
 }

@@ -1,8 +1,13 @@
 package top.amfun.quickinit.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import top.amfun.quickinit.entity.Menu;
 
-public interface MenuService {
+import java.util.List;
 
+public interface MenuService {
+    List<Menu> getMenuList(Long userId);
+
+    Menu createMenu(Menu menu);
+
+    List<Menu> allMenuList();
 }

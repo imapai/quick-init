@@ -1,5 +1,6 @@
 package top.amfun.quickinit.service;
 
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,21 +13,22 @@ import java.util.List;
 
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
-    @Autowired
-    private MenuMapper menuMapper;
 
     @Override
-    public List<Menu> getMenuList(Long userId) {
-        return menuMapper.getMenuListByUserId(userId);
-    }
-
-    @Override
-    public void create(Role role) {
+    public Role create(Role role) {
+        role.setRoleId(IdWorker.getId());
         baseMapper.insert(role);
+        return getRoleById(role.getRoleId());
     }
 
     @Override
-    public void modify(Role role) {
+    public Role modify(Role role) {
+        baseMapper.updateById(role);
+        return getRoleById(role.getRoleId());
+    }
 
+    @Override
+    public Role getRoleById(Long roleId) {
+        return baseMapper.selectById(roleId);
     }
 }

@@ -78,7 +78,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = getUserByUsername(username);
         if (user != null) {
             //List<UmsResource> resourceList = getResourceList(admin.getId());
-            return new UserDetailsImpl(user);
+            List<Role> roleList = getRoleList(user.getUserId());
+            return new UserDetailsImpl(user, roleList);
         }
         throw new UsernameNotFoundException("用户名或密码错误");
     }

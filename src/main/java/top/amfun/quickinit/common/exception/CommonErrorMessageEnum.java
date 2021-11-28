@@ -11,7 +11,7 @@ public enum CommonErrorMessageEnum  implements AbstractErrorMessageEnum{
     ILLEGAL_ARGUMENT(100000,"错误参数"),
     NULL_VALUE(100001,"不允许的空值"),
     NO_PERMISSION(100002,"无权访问他人数据"),
-    NO_LOGIN(100003,"必须登录才能访问此地址"),
+    NO_LOGIN(100003,"未登录或者token无效"),
     ILLEGAL_ARGUMENT_FORMAT(100004,"错误参数格式"),
     SERVICE_UNAVAILABLE(100005,"服务维护中，请稍后再试"),
     DATA_CONFLICT(100006,"数据已存在"),

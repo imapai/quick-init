@@ -18,20 +18,20 @@ public class RoleController {
     private RoleService roleService;
 
     @ApiOperation("添加角色")
-    @PostMapping(value = "/create")
-    RestResponse create(@RequestBody Role role) {
+    @PostMapping
+    RestResponse<Role> create(@RequestBody Role role) {
         roleService.create(role);
         return RestResponse.success();
     }
 
     @ApiOperation("修改角色")
-    @PutMapping(value = "/update")
+    @PutMapping
     RestResponse update(@RequestBody Role role) {
         roleService.modify(role);
         return RestResponse.success();
     }
 
-    @ApiOperation("获取所有角色")
+    @ApiOperation("角色分页条件查询")
     @GetMapping(value = "/p")
     RestResponse<PageResponse<Role>> getRoleList() {
         return RestResponse.success();

@@ -28,6 +28,7 @@ CREATE TABLE `menu`  (
   `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '图标',
   `level` int(11) NULL DEFAULT NULL COMMENT '级别',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '组件名称',
+  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '路径',
   `sort` int(11) NULL DEFAULT NULL COMMENT '排序',
   `hidden` tinyint(1) NULL DEFAULT NULL COMMENT '隐藏',
   PRIMARY KEY (`menu_id`) USING BTREE
