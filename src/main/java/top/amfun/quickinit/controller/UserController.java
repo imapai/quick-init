@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import top.amfun.quickinit.common.CurrentUser;
 import top.amfun.quickinit.common.RestResponse;
 import top.amfun.quickinit.common.SystemSecurityContext;
-import top.amfun.quickinit.dto.LoginForm;
+import top.amfun.quickinit.pojo.dto.LoginForm;
 import top.amfun.quickinit.entity.Role;
 import top.amfun.quickinit.entity.User;
 import top.amfun.quickinit.service.MenuService;

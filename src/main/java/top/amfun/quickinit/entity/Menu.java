@@ -18,7 +18,7 @@ public class Menu implements Serializable {
     private static final long serialVersionUID=1L;
 
     @ApiModelProperty(value = "菜单ID")
-    @TableId(value = "menu_id", type = IdType.AUTO)
+    @TableId(value = "menu_id", type = IdType.ASSIGN_ID)
     private Long menuId;
 
     @ApiModelProperty(value = "父菜单ID")

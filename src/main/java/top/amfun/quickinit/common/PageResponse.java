@@ -10,22 +10,32 @@ import java.util.List;
 @Getter
 @Setter
 public class PageResponse<T> {
-    private Integer pageCurrent;
+    private Integer page;
     private Integer pageSize;
     private Integer totalPage;
     private Long total;
-    private List<T> list;
+    private List<T> items;
+
+    public PageResponse() {}
+
+    public PageResponse(List<T> items, Long total, Integer page, Integer pageSize) {
+        this.page = page;
+        this.pageSize = pageSize;
+        this.totalPage = Convert.toInt(total/pageSize + 1);
+        this.total = total;
+        this.items = items;
+    }
 
     /**
      * 将MyBatis Plus 分页结果转化为通用结果
      */
     public static <T> PageResponse<T> restPage(Page<T> pageResult) {
         PageResponse<T> result = new PageResponse<>();
-        result.setPageCurrent(Convert.toInt(pageResult.getCurrent()));
+        result.setPage(Convert.toInt(pageResult.getCurrent()));
         result.setPageSize(Convert.toInt(pageResult.getSize()));
         result.setTotal(pageResult.getTotal());
         result.setTotalPage(Convert.toInt(pageResult.getTotal()/pageResult.getSize()+1));
-        result.setList(pageResult.getRecords());
+        result.setItems(pageResult.getRecords());
         return result;
     }
 }
