@@ -18,7 +18,7 @@ public class User implements Serializable {
     private static final long serialVersionUID=1L;
 
     @ApiModelProperty(value = "用户ID")
-    @TableId(value = "user_id", type = IdType.AUTO)
+    @TableId(value = "user_id", type = IdType.ASSIGN_ID)
     private Long userId;
 
     @ApiModelProperty(value = "用户名")
@@ -46,6 +46,4 @@ public class User implements Serializable {
     @ApiModelProperty(value = "更新时间")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
-
-
 }

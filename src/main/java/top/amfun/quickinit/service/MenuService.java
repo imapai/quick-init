@@ -11,5 +11,8 @@ public interface MenuService {
 
     List<Menu> allMenuList(List<Long> roleIdes);
 
-    Menu getMenu(Long menuId);
+    List<Menu> allMenuList();
+
+    Menu getMenuById(Long menuId);
+    PageResponse<Menu> pageSelect(MenuPageQuery menuPageQuery);
 }
