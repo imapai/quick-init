@@ -9,5 +9,7 @@ public interface MenuService {
 
     Menu createMenu(Menu menu);
 
-    List<Menu> allMenuList();
+    List<Menu> allMenuList(List<Long> roleIdes);
+
+    Menu getMenu(Long menuId);
 }
