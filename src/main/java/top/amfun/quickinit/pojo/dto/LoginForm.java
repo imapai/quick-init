@@ -1,4 +1,4 @@
-package top.amfun.quickinit.dto;
+package top.amfun.quickinit.pojo.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
