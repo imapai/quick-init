@@ -15,6 +15,7 @@ import top.amfun.quickinit.mapper.RoleMenuMapper;
 import top.amfun.quickinit.pojo.qo.MenuPageQuery;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 class MenuServiceImpl implements MenuService {
