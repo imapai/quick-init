@@ -23,14 +23,17 @@ public class MenuController {
 
     @ApiOperation("新建菜单")
     @PostMapping
-    RestResponse<Menu> createMenu(@RequestBody Menu menu) {
-        return RestResponse.success(menuService.createMenu(menu));
+    RestResponse createMenu(@RequestBody Menu menu) {
+        menu.setParentId(0L);
+        menu.setLevel(0);
+        menu.setHidden(false);
+        return RestResponse.success(menuService.save(menu));
     }
 
     @ApiOperation("获取菜单详情")
     @GetMapping("/{menuId}")
     RestResponse<Menu> getMenu(@PathVariable("menuId") Long menuId) {
-        return RestResponse.success(menuService.getMenuById(menuId));
+        return RestResponse.success(menuService.getById(menuId));
     }
 
     @ApiOperation("全部的菜单")
@@ -47,6 +50,16 @@ public class MenuController {
         return RestResponse.success(menuService.pageSelect(menuPageQuery));
     }
 
+    @ApiOperation("删除菜单")
+    @DeleteMapping("/{menuId}")
+    RestResponse deleteMenu(@PathVariable("menuId") Long menuId) {
+        return RestResponse.success(menuService.removeById(menuId));
+    }
 
+    @ApiOperation("修改菜单")
+    @PutMapping
+    RestResponse modifyMenu(@RequestBody Menu menu) {
+        return RestResponse.success(menuService.updateById(menu));
+    }
 }
 

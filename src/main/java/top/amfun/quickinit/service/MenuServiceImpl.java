@@ -1,10 +1,9 @@
 package top.amfun.quickinit.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import top.amfun.quickinit.common.PageResponse;
@@ -18,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-class MenuServiceImpl implements MenuService {
+class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements MenuService {
     @Autowired
     private MenuMapper menuMapper;
     @Autowired
@@ -30,26 +29,16 @@ class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Menu createMenu(Menu menu) {
-        menu.setMenuId(IdWorker.getId());
-        menuMapper.insert(menu);
-        return menu;
-    }
-
-    @Override
     public List<Menu> allMenuList(List<Long> roleIdes) {
         LambdaQueryWrapper<RoleMenu> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.in(RoleMenu::getRoleId, roleIdes);
         List<RoleMenu> roleMenus = roleMenuMapper.selectList(queryWrapper);
         List<Long> menuIds = roleMenus.stream().map(e -> e.getMenuId()).distinct().collect(Collectors.toList());
         LambdaQueryWrapper<Menu> menuWrapper = new LambdaQueryWrapper<>();
+        menuWrapper.eq(Menu::getHidden, Boolean.FALSE);
         menuWrapper.in(Menu::getMenuId, menuIds);
+        menuWrapper.orderByAsc(Menu::getSort);
         return menuMapper.selectList(menuWrapper);
-    }
-
-    @Override
-    public Menu getMenuById(Long menuId) {
-        return menuMapper.selectById(menuId);
     }
 
     @Override

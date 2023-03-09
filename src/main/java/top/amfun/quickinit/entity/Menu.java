@@ -22,7 +22,7 @@ public class Menu implements Serializable {
     private Long menuId;
 
     @ApiModelProperty(value = "父菜单ID")
-    private Integer parentId;
+    private Long parentId;
 
     @ApiModelProperty(value = "标题")
     private String title;

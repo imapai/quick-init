@@ -1,6 +1,5 @@
 server:
   port: 9870
-
 spring:
   application:
     name: quickinit
@@ -47,3 +46,5 @@ secure:
       - /user/register
       - /user/info
       - /user/logout
+      - /**/test/**
+      - /**/noauth/**

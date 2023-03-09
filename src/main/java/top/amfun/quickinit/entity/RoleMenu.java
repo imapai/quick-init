@@ -17,7 +17,7 @@ public class RoleMenu implements Serializable {
 
     private static final long serialVersionUID=1L;
     @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private Integer id;
+    private Long id;
 
     @ApiModelProperty(value = "角色ID")
     private Long roleId;
