@@ -6,9 +6,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import top.amfun.quickinit.entity.Role;
 import top.amfun.quickinit.entity.User;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * SpringSecurity需要的用户详情
@@ -28,9 +28,12 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // 返回当前角色
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRoleId().toString()))
-                .collect(Collectors.toList());
+//        return roles.stream()
+//                .map(role -> new SimpleGrantedAuthority(role.getRoleId().toString()))
+//                .collect(Collectors.toList());
+        ArrayList<SimpleGrantedAuthority> list = new ArrayList<>();
+        list.add(new SimpleGrantedAuthority("sys:user:get"));
+        return list;
     }
 
     @Override

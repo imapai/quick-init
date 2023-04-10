@@ -3,6 +3,7 @@ package top.amfun.quickinit.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import top.amfun.quickinit.common.CurrentUser;
 import top.amfun.quickinit.common.PageResponse;
@@ -30,6 +31,7 @@ public class MenuController {
         return RestResponse.success(menuService.save(menu));
     }
 
+    @PreAuthorize("hasAuthority('sys:menu:get')")
     @ApiOperation("获取菜单详情")
     @GetMapping("/{menuId}")
     RestResponse<Menu> getMenu(@PathVariable("menuId") Long menuId) {

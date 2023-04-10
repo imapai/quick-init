@@ -1,5 +1,6 @@
 package top.amfun.quickinit.config;
 
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import top.amfun.quickinit.service.UserService;
 import top.amfun.quickinit.utli.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
