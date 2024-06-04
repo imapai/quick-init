@@ -3,6 +3,7 @@ package top.amfun.quickinit.controller;
 import top.amfun.quickinit.common.PageResponse;
 import top.amfun.quickinit.common.RestResponse;
 import top.amfun.quickinit.entity.Role;
+import top.amfun.quickinit.pojo.dto.RolePermissionsDTO;
 import top.amfun.quickinit.pojo.qo.RolePageQuery;
 import top.amfun.quickinit.service.RoleService;
 import io.swagger.annotations.Api;
@@ -40,6 +41,12 @@ public class RoleController {
     @PostMapping("/p")
     RestResponse<PageResponse<Role>> getRoleList(@RequestBody RolePageQuery rolePageQuery) {
         return RestResponse.success(roleService.pageSelect(rolePageQuery));
+    }
+
+    @ApiOperation("角色绑定权限")
+    @PostMapping("/permission/bind")
+    RestResponse<Integer> roleBindPermission(@RequestBody RolePermissionsDTO rolePermissionsDTO) {
+        return RestResponse.success(roleService.bindPermission(rolePermissionsDTO));
     }
 
 }

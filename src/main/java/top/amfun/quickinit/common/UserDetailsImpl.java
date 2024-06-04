@@ -3,12 +3,13 @@ package top.amfun.quickinit.common;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import top.amfun.quickinit.entity.Permission;
 import top.amfun.quickinit.entity.Role;
 import top.amfun.quickinit.entity.User;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * SpringSecurity需要的用户详情
@@ -16,24 +17,23 @@ import java.util.List;
 public class UserDetailsImpl implements UserDetails {
     private User user;
     private List<Role> roles;
+    private List<Permission> permissions;
 
     public UserDetailsImpl(User user) {
         this.user = user;
     }
-    public UserDetailsImpl(User user, List<Role> roles) {
+    public UserDetailsImpl(User user, List<Role> roles, List<Permission> permissions) {
         this.user = user;
         this.roles = roles;
+        this.permissions = permissions;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // 返回当前角色
-//        return roles.stream()
-//                .map(role -> new SimpleGrantedAuthority(role.getRoleId().toString()))
-//                .collect(Collectors.toList());
-        ArrayList<SimpleGrantedAuthority> list = new ArrayList<>();
-        list.add(new SimpleGrantedAuthority("sys:user:get"));
-        return list;
+        // 返回当前角色权限集合
+        return permissions.stream()
+                .map(p -> new SimpleGrantedAuthority(p.getCode()))
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import top.amfun.quickinit.config.ExceptionAsserts;
+import top.amfun.quickinit.entity.Permission;
 import top.amfun.quickinit.mapper.RoleMapper;
 import top.amfun.quickinit.mapper.UserMapper;
 import top.amfun.quickinit.common.UserDetailsImpl;
@@ -19,7 +20,9 @@ import top.amfun.quickinit.entity.Role;
 import top.amfun.quickinit.entity.User;
 import top.amfun.quickinit.utli.JwtTokenUtil;
 
+import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -28,6 +31,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private RoleMapper roleMapper;
+    @Resource
+    private RolePermissionService rolePermissionService;
 
     @Override
     public User getUserByUsername(String username) {
@@ -77,9 +82,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //获取用户信息
         User user = getUserByUsername(username);
         if (user != null) {
-            //List<UmsResource> resourceList = getResourceList(admin.getId());
             List<Role> roleList = getRoleList(user.getUserId());
-            return new UserDetailsImpl(user, roleList);
+            List<Permission> permissions = rolePermissionService.allPermissions(roleList.stream().map(Role::getRoleId).collect(Collectors.toList()));
+            return new UserDetailsImpl(user, roleList, permissions);
         }
         throw new UsernameNotFoundException("用户名或密码错误");
     }

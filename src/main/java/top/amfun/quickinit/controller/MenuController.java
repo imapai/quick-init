@@ -31,13 +31,14 @@ public class MenuController {
         return RestResponse.success(menuService.save(menu));
     }
 
-    @PreAuthorize("hasAuthority('sys:menu:get')")
+    @PreAuthorize("hasAuthority('menu:get')")
     @ApiOperation("获取菜单详情")
     @GetMapping("/{menuId}")
     RestResponse<Menu> getMenu(@PathVariable("menuId") Long menuId) {
         return RestResponse.success(menuService.getById(menuId));
     }
 
+    @PreAuthorize("hasAuthority('menu:get')")
     @ApiOperation("全部的菜单")
     @GetMapping
     RestResponse<List<Menu>> menuList() {

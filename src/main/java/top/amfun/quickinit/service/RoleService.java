@@ -3,6 +3,7 @@ package top.amfun.quickinit.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import top.amfun.quickinit.common.PageResponse;
 import top.amfun.quickinit.entity.Role;
+import top.amfun.quickinit.pojo.dto.RolePermissionsDTO;
 import top.amfun.quickinit.pojo.qo.RolePageQuery;
 
 public interface RoleService extends IService<Role> {
@@ -14,4 +15,6 @@ public interface RoleService extends IService<Role> {
     Role getRoleById(Long roleId);
 
     PageResponse<Role> pageSelect(RolePageQuery rolePageQuery);
+
+    Integer bindPermission(RolePermissionsDTO rolePermissionsDTO);
 }

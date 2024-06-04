@@ -1,0 +1,13 @@
+package top.amfun.quickinit.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import top.amfun.quickinit.entity.Permission;
+
+import java.util.List;
+
+/**
+ * @author zhaoxg
+ * @date 2024/6/4 10:19
+ */
+public interface PermissionService extends IService<Permission> {
+}
