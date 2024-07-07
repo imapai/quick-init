@@ -2,7 +2,7 @@ package top.amfun.quickinit.common;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import top.amfun.quickinit.entity.Permission;
 import top.amfun.quickinit.entity.Role;
@@ -32,10 +32,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // 返回当前角色权限集合
-        return permissions.stream()
-                .map(p -> new SimpleGrantedAuthority(p.getCode()))
-                .collect(Collectors.toList());
+        return AuthorityUtils.createAuthorityList(permissions.stream().map(Permission::getCode).toArray(String[]::new));
     }
 
     @Override

@@ -130,3 +130,23 @@ INSERT INTO `user_role` VALUES (1, 1, 1, '2021-02-17 16:17:15', '2021-02-17 16:1
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+create table if not exists permission
+(
+    permission_id bigint      not null comment '权限id'
+    primary key,
+    name          varchar(50) not null comment '权限名称',
+    code          varchar(50) not null comment '权限编码',
+    constraint idx_code
+    unique (code)
+    )
+    comment '权限' row_format = DYNAMIC;
+
+create table if not exists role_permission
+(
+    role_permission_id bigint not null
+    primary key,
+    role_id            bigint null comment '角色id',
+    permission_id      bigint null comment '权限id'
+)
+    comment '角色权限关联表';
