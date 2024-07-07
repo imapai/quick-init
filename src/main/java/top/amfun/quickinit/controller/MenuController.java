@@ -2,7 +2,6 @@ package top.amfun.quickinit.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import top.amfun.quickinit.common.CurrentUser;
@@ -13,18 +12,19 @@ import top.amfun.quickinit.entity.Menu;
 import top.amfun.quickinit.pojo.qo.MenuPageQuery;
 import top.amfun.quickinit.service.MenuService;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Api(tags = "菜单")
 @RestController
 @RequestMapping("/menus")
 public class MenuController {
-    @Autowired
+    @Resource
     private MenuService menuService;
 
     @ApiOperation("新建菜单")
     @PostMapping
-    RestResponse createMenu(@RequestBody Menu menu) {
+    RestResponse<Boolean> createMenu(@RequestBody Menu menu) {
         menu.setParentId(0L);
         menu.setLevel(0);
         menu.setHidden(false);
@@ -55,13 +55,13 @@ public class MenuController {
 
     @ApiOperation("删除菜单")
     @DeleteMapping("/{menuId}")
-    RestResponse deleteMenu(@PathVariable("menuId") Long menuId) {
+    RestResponse<Boolean> deleteMenu(@PathVariable("menuId") Long menuId) {
         return RestResponse.success(menuService.removeById(menuId));
     }
 
     @ApiOperation("修改菜单")
     @PutMapping
-    RestResponse modifyMenu(@RequestBody Menu menu) {
+    RestResponse<Boolean> modifyMenu(@RequestBody Menu menu) {
         return RestResponse.success(menuService.updateById(menu));
     }
 }

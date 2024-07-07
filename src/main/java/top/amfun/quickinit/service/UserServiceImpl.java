@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import top.amfun.quickinit.common.exception.CommonErrorMessageEnum;
 import top.amfun.quickinit.config.ExceptionAsserts;
 import top.amfun.quickinit.entity.Permission;
 import top.amfun.quickinit.mapper.RoleMapper;
@@ -45,16 +46,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User register(User user) {
-        // 查询用户名相同
         LambdaQueryWrapper<User> lambda = new LambdaQueryWrapper<>();
         lambda.eq(User::getUsername, user.getUsername());
-        List<User> users = baseMapper.selectList(lambda);
-        if (users.isEmpty()) {
-            user.setUserId(IdWorker.getId());
-            baseMapper.insert(user);
-            return user;
+        int i = baseMapper.selectCount(lambda);
+        if (i > 0) {
+            throw CommonErrorMessageEnum.DATA_CONFLICT.businessException("用户名已存在");
         }
-        return null;
+        user.setUserId(IdWorker.getId());
+        baseMapper.insert(user);
+        return user;
     }
 
     @Override
