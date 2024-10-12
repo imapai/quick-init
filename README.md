@@ -4,8 +4,8 @@
 
 集成：
 * Spring security
-* swagger3.0，http://localhost:8080/swagger-ui/index.html
-* knife4j，http://localhost:8080/doc.html
+* swagger3.0，http://localhost:9870/swagger-ui/index.html
+* knife4j，http://localhost:9870/doc.html
 * Mybatis-plus
 
 逐步完善中...
