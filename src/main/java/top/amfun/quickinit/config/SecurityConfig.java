@@ -2,7 +2,6 @@ package top.amfun.quickinit.config;
 
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import top.amfun.quickinit.service.UserService;
-import top.amfun.quickinit.utli.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -79,11 +78,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public IgnoreUrlsConfig ignoreUrlsConfig() {
         return new IgnoreUrlsConfig();
-    }
-
-    @Bean
-    public JwtTokenUtil jwtTokenUtil() {
-        return new JwtTokenUtil();
     }
 
     @Bean

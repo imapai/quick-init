@@ -17,7 +17,7 @@ import top.amfun.quickinit.mapper.UserMapper;
 import top.amfun.quickinit.common.UserDetailsImpl;
 import top.amfun.quickinit.entity.Role;
 import top.amfun.quickinit.entity.User;
-import top.amfun.quickinit.utli.JwtTokenUtil;
+import top.amfun.quickinit.config.JwtTokenUtil;
 
 import javax.annotation.Resource;
 import java.util.List;

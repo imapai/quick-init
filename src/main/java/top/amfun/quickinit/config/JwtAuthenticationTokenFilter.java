@@ -2,7 +2,6 @@ package top.amfun.quickinit.config;
 
 import org.springframework.beans.BeanUtils;
 import top.amfun.quickinit.common.CurrentUser;
-import top.amfun.quickinit.utli.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
