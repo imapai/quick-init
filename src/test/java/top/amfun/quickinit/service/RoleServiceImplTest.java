@@ -1,6 +1,5 @@
 package top.amfun.quickinit.service;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +17,6 @@ class RoleServiceImplTest {
     @Test
     void getMenuList() {
         List<Menu> menuList = menuService.getMenuList(1L);
-        Assert.assertNotNull(menuList);
+        assertNotNull(menuList);
     }
 }
